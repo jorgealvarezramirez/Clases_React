@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-
+const form = {
+  name: "",
+  lastname: "",
+  phone: "",
+  email: "",
+};
 class PersonForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: {
-        name: "",
-        lastname: "",
-        phone: "",
-        email: "",
-      },
+      form: form,
     };
+    console.log("Props-> ", this.props.mensaje);
     // Biendear
     // this.handlerName = this.handlerName.bind(this);
     // this.handlerLastname = this.handlerLastname.bind(this);
@@ -73,7 +74,12 @@ class PersonForm extends Component {
   handlerSubmit(e) {
     console.log(e);
     e.preventDefault();
-    console.table(this.state.form);
+    // console.table(this.state.form);
+    let objPerson = this.state.form;
+    this.props.addPerson(objPerson);
+    this.setState({
+      form: form,
+    });
   }
   render() {
     return (
